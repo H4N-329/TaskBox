@@ -22,3 +22,12 @@
 .board.vertical .task-color-menu summary{font-size:14px;padding:2px}
 .board.vertical .task-color-popover{z-index:20}
 @media(max-width:600px){.board.vertical .cards{grid-template-columns:repeat(auto-fill,minmax(min(100%,135px),1fr));gap:6px}.board.vertical .task{padding:6px}.board.vertical .task strong{font-size:11px}}
+
+/* Clear, readable category legend and board controls. */
+.category-legend{display:flex;align-items:center;gap:14px;margin:16px 28px 4px;padding:13px 16px;border:1px solid #3a4c69;border-radius:14px;background:#192842;box-shadow:0 5px 18px #0002}
+.legend-heading{font-size:12px;font-weight:700;color:#b9c9e4;white-space:nowrap}
+.legend-items{display:flex;flex-wrap:wrap;gap:9px}
+.legend-chip{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border:1px solid #52627b;border-radius:99px;background:#111d32;color:#f0f5ff;font-size:13px;font-weight:700;white-space:nowrap}
+.legend-chip i{display:inline-block;width:15px;height:15px;border-radius:5px;flex-shrink:0;border:1px solid #0002}
+.toolbar{padding-top:14px}.toolbar .segments button{min-height:36px}.toolbar .segments button.active{background:#537fc9;color:#fff;font-weight:700}.group-head strong{font-size:14px}.group{border-color:#465773}
+@media(max-width:600px){.category-legend{margin:10px 15px 2px;padding:11px;gap:8px;align-items:flex-start;flex-direction:column}.legend-items{gap:6px}.legend-chip{padding:6px 9px;font-size:12px}.toolbar{padding-top:10px}}
