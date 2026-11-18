@@ -31,3 +31,26 @@
 .legend-chip i{display:inline-block;width:15px;height:15px;border-radius:5px;flex-shrink:0;border:1px solid #0002}
 .toolbar{padding-top:14px}.toolbar .segments button{min-height:36px}.toolbar .segments button.active{background:#537fc9;color:#fff;font-weight:700}.group-head strong{font-size:14px}.group{border-color:#465773}
 @media(max-width:600px){.category-legend{margin:10px 15px 2px;padding:11px;gap:8px;align-items:flex-start;flex-direction:column}.legend-items{gap:6px}.legend-chip{padding:6px 9px;font-size:12px}.toolbar{padding-top:10px}}
+
+/* Dense, content-first cards: minimize empty space while retaining readable labels. */
+.board:not(.vertical) .group{flex-basis:220px;width:220px}
+.board.grid{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.board.grid .group{width:100%;min-width:0}
+.board.vertical .group{width:min(100%,900px);flex-basis:auto}
+.board.free .group{width:220px}
+.group-head{padding:7px 9px;gap:5px}
+.group-head strong{font-size:12px;line-height:1.3;overflow-wrap:anywhere;white-space:normal}
+.group-handle{font-size:16px}.group-head button{padding:2px 5px}
+.cards{padding:7px 7px 0;gap:5px}
+.task{padding:6px 7px;gap:4px;border-radius:7px;align-items:center}
+.task strong{font-size:12px;line-height:1.3;display:block}
+.task p{font-size:11px;line-height:1.3;margin:3px 0 0}
+.task-actions{gap:0}.task-actions button{padding:2px 3px}
+.task-color-menu summary{padding:2px;font-size:14px}
+.add-task{margin:5px 7px;padding:5px 7px;font-size:12px}
+.group-foot{padding:5px 8px;gap:5px}
+.group-foot input{width:21px;height:21px}
+.board.vertical .cards{grid-template-columns:repeat(auto-fill,minmax(min(100%,125px),1fr));gap:5px;padding:6px}
+.board.vertical .task{padding:5px 6px;min-height:0}
+.board.vertical .task strong{font-size:11px}
+@media(max-width:600px){.board:not(.vertical) .group{flex-basis:195px;width:195px}.board.grid{grid-template-columns:repeat(auto-fill,minmax(175px,1fr))}.board.grid .group{width:100%}.board.vertical .group{width:100%}.board.vertical .cards{grid-template-columns:repeat(auto-fill,minmax(min(100%,115px),1fr))}.board.free .group{width:195px}}
