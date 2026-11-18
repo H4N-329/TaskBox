@@ -4,7 +4,8 @@ type Group={id:string;name:string;color:string;x:number;y:number};
 type Task={id:string;groupId:string;title:string;description:string;color:string};
 type Data={layout:string;groups:Group[];tasks:Task[]};
 type Snapshot={name:string;data:Data;version:number};
-const colors=['#ffffff','#dbeafe','#fef3c7','#dcfce7','#fce7f3','#ede9fe','#fed7aa','#fecaca'];
+const colors=['#ffffff','#b7e9ff','#ffe48a','#ffc38a','#dbeafe','#dcfce7','#fce7f3','#ede9fe','#fecaca'];
+const categories=[{name:'ボカクラ',color:'#b7e9ff'},{name:'Apop',color:'#ffe48a'},{name:'Apop(selector)',color:'#ffc38a'}];
 const uid=()=>crypto.randomUUID();
 export default function Board({token}:{token:string}){
 const [snap,setSnap]=useState<Snapshot|null>(null),[error,setError]=useState(''),[status,setStatus]=useState('読み込み中');
@@ -22,6 +23,7 @@ function end(e:React.PointerEvent){const p=pointer.current;pointer.current=null;
 if(!snap)return <div className="loading">{error||'読み込み中…'}</div>;
 const d=snap.data;
 return <main className="app"><header className="topbar"><a className="logo" href="/">▦ TaskBox</a><div className="title-area"><h1 onClick={()=>{const n=prompt('プロジェクト名',snap.name);if(n?.trim())change(d=>d,n.trim())}}>{snap.name} ✎</h1><span className="sync">● {status}</span></div><button className="share" onClick={copyShareUrl}>🔗 URLをコピー</button></header>
+<section className="category-legend" aria-label="色分けの凡例"><span className="legend-heading">色分け</span><div className="legend-items">{categories.map(item=><span key={item.name} className="legend-chip"><i aria-hidden="true" style={{background:item.color}}/>{item.name}</span>)}</div></section>
 <div className="toolbar"><span>レイアウト</span><div className="segments">{[['horizontal','横並び'],['vertical','縦並び'],['grid','グリッド'],['free','自由配置']].map(([v,l])=><button key={v} className={d.layout===v?'active':''} onClick={()=>change(d=>({...d,layout:v}))}>{l}</button>)}</div><button className="primary" onClick={addGroup}>＋ グループ追加</button></div>
 {error&&<div className="errorbar">{error}<button onClick={()=>{setError('');load()}}>再読み込み</button></div>}
 <section className={'board '+d.layout}>{d.groups.map(g=><article key={g.id} className="group" style={d.layout==='free'?{position:'absolute',left:g.x,top:g.y}:{}} onPointerDown={e=>begin(e,g)} onPointerUp={end} onPointerCancel={()=>pointer.current=null} onDragOver={e=>e.preventDefault()} onDrop={e=>{e.preventDefault();const t=e.dataTransfer.getData('task'),gr=e.dataTransfer.getData('group');if(t)moveTask(t,g.id);else if(gr)reorderGroup(gr,g.id)}}>
