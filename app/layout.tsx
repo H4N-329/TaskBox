@@ -1,0 +1,1 @@
+import './style.css';export const metadata={title:'TaskBox | 共有タスクボード',description:'URLで共有できるタスク管理ボード'};export default function Layout({children}:{children:React.ReactNode}){return <html lang="ja"><body>{children}</body></html>}
