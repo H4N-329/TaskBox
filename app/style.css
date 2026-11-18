@@ -54,3 +54,8 @@
 .board.vertical .task{padding:5px 6px;min-height:0}
 .board.vertical .task strong{font-size:11px}
 @media(max-width:600px){.board:not(.vertical) .group{flex-basis:195px;width:195px}.board.grid{grid-template-columns:repeat(auto-fill,minmax(175px,1fr))}.board.grid .group{width:100%}.board.vertical .group{width:100%}.board.vertical .cards{grid-template-columns:repeat(auto-fill,minmax(min(100%,115px),1fr))}.board.free .group{width:195px}}
+
+/* In-app editor replaces browser prompts that expose the page URL. */
+.editor-backdrop{position:fixed;inset:0;z-index:1000;background:#060b18bd;display:flex;align-items:center;justify-content:center;padding:16px}
+.editor-dialog{width:min(100%,430px);max-height:90dvh;overflow-y:auto;background:#1b2940;border:1px solid #607390;border-radius:18px;padding:22px;box-shadow:0 24px 65px #0008;display:flex;flex-direction:column;gap:12px}
+.editor-dialog h2{font-size:18px;margin:0 0 4px}.editor-dialog input,.editor-dialog textarea{width:100%;background:#101a2c;border:1px solid #637691;border-radius:9px;color:#fff;padding:12px;font:inherit}.editor-dialog label{font-size:12px;color:#b8c8df}.editor-buttons{display:flex;justify-content:flex-end;gap:9px;margin-top:6px}.editor-buttons button{min-width:85px}.editor-save{background:#598bff;color:#fff;font-weight:700}.editor-warning{padding:12px;background:#473a22;border:1px solid #a98847;border-radius:10px;font-size:13px}.editor-warning p{margin:6px 0 10px}.editor-warning button{background:#ad7d2e;color:white}
