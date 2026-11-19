@@ -1,5 +1,6 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
+import BoardImageExport from './board-image-export';
 type Group={id:string;name:string;color:string;x:number;y:number};
 type Task={id:string;groupId:string;title:string;description:string;color:string};
 type Data={layout:string;groups:Group[];tasks:Task[]};
@@ -30,7 +31,7 @@ function begin(e:React.PointerEvent,g:Group){if(snap?.data.layout!=='free'||!(e.
 function end(e:React.PointerEvent){const p=pointer.current;pointer.current=null;if(!p)return;const dx=e.clientX-p.x,dy=e.clientY-p.y;if(Math.abs(dx)+Math.abs(dy)<3)return;change(d=>({...d,groups:d.groups.map(g=>g.id===p.id?{...g,x:Math.max(0,p.gx+dx),y:Math.max(0,p.gy+dy)}:g)}))}
 if(!snap)return <div className="loading">{error||'読み込み中…'}</div>;
 const d=snap.data;
-return <main className="app"><header className="topbar"><a className="logo" href="/">▦ TaskBox</a><div className="title-area"><h1 onClick={()=>openEditor('project')}>{snap.name} ✎</h1><span className="sync">● {status}</span></div><button className="share" onClick={copyShareUrl}>🔗 URLをコピー</button></header>
+return <main className="app"><header className="topbar"><a className="logo" href="/">▦ TaskBox</a><div className="title-area"><h1 onClick={()=>openEditor('project')}>{snap.name} ✎</h1><span className="sync">● {status}</span></div><div className="topbar-actions"><BoardImageExport name={snap.name} data={d} saving={status==='保存中'}/><button className="share" onClick={copyShareUrl}>🔗 URLをコピー</button></div></header>
 <section className="category-legend" aria-label="色分けの凡例"><span className="legend-heading">色分け</span><div className="legend-items">{categories.map(item=><span key={item.name} className="legend-chip"><i aria-hidden="true" style={{background:item.color}}/>{item.name}</span>)}</div></section>
 <div className="toolbar"><span>レイアウト</span><div className="segments">{[['horizontal','横並び'],['vertical','縦並び'],['grid','グリッド'],['free','自由配置']].map(([v,l])=><button key={v} className={d.layout===v?'active':''} onClick={()=>change(d=>({...d,layout:v}))}>{l}</button>)}</div><button className="primary" onClick={addGroup}>＋ グループ追加</button></div>
 {error&&<div className="errorbar">{error}<button onClick={()=>{setError('');load()}}>再読み込み</button></div>}
